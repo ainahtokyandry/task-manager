@@ -1,0 +1,32 @@
+import { prisma } from '@/prisma/client';
+import { NextApiRequest, NextApiResponse } from 'next';
+
+type Task = {
+    id?: string;
+    title: string;
+    description: string;
+};
+
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    if (req.method === 'POST') {
+        const { title, description } = req.body;
+        console.log(title, description);
+        
+
+        if (!title || !description) {
+            return res.status(400).json({ error: 'Title and description are required' });
+        }
+
+        const newTask: Task = {
+            title,
+            description,
+        };
+await prisma.task.create({data:{title, description}})
+
+        return res.status(201).json(newTask);
+    } else {
+        res.setHeader('Allow', ['POST']);
+        res.status(405).end(`Method ${req.method} Not Allowed`);
+    }
+}
