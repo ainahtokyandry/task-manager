@@ -19,9 +19,8 @@ const CreateTask = () => {
             },body:JSON.stringify(data)
         })
         const res = await req.json()
-        console.log(data, res);
         
-    }, [])
+    }, [data])
     
     return (
         <PageContainer>

@@ -11,8 +11,6 @@ type Task = {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
         const { title, description } = req.body;
-        console.log(title, description);
-        
 
         if (!title || !description) {
             return res.status(400).json({ error: 'Title and description are required' });
@@ -22,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             title,
             description,
         };
-await prisma.task.create({data:{title, description}})
+        await prisma.task.create({ data: { title, description } })
 
         return res.status(201).json(newTask);
     } else {
