@@ -6,7 +6,7 @@ interface PageContainerProps {
 
 const PageContainer: React.FC<PageContainerProps> = ({ children }) => {
     return (
-        <div className='p-4 max-w-[1200px] my-0 mx-auto'>
+        <div className='p-4 max-w-[800px] my-0 mx-auto flex flex-col gap-4'>
             {children}
         </div>
     );

@@ -1,11 +1,7 @@
 import { prisma } from '@/prisma/client';
+import { TTask } from '@/types/task';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-type Task = {
-    id?: string;
-    title: string;
-    description: string;
-};
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -16,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return res.status(400).json({ error: 'Title and description are required' });
         }
 
-        const newTask: Task = {
+        const newTask: TTask = {
             title,
             description,
         };
